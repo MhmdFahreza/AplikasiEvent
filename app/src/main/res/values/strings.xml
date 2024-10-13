@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">AplikasiEvent</string>
+    <string name="title_upcoming">Upcoming</string>
+    <string name="title_finished">Finished</string>
+    <string name="textEventFinished">Event Name</string>
+    <string name="textEventUpcoming">Event Name</string>
+
+    <string name="default_event_name">Nama Acara Tidak Diketahui</string>
+    <string name="default_owner_name">Penyelenggara Tidak Diketahui</string>
+    <string name="default_time">Waktu Tidak Diketahui</string>
+    <string name="default_description">Deskripsi Tidak Tersedia</string>
+    <string name="default_link">https://default-link.com</string>
+    <string name="quota_text">Sisa Kuota: %1$d</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
