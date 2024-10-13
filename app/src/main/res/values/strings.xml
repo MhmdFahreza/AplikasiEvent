@@ -11,6 +11,7 @@
     <string name="default_description">Deskripsi Tidak Tersedia</string>
     <string name="default_link">https://default-link.com</string>
     <string name="quota_text">Sisa Kuota: %1$d</string>
+    <string name="view_event_link_finished">https://www.dicoding.com/events/8933</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
