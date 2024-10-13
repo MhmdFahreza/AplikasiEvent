@@ -1,4 +1,4 @@
-package com.example.aplikasievent.ui.Finished
+package com.example.aplikasievent.ui.Upcoming
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,13 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.aplikasievent.R
 
-class DetailFragmentFinished : Fragment() {
+class DetailFragmentUpcoming : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detail_finished, container, false)
+        return inflater.inflate(R.layout.fragment_detail_upcoming, container, false)
     }
 }

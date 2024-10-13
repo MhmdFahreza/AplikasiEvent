@@ -9,13 +9,31 @@
         android:id="@+id/navigation_upcoming"
         android:name="com.example.aplikasievent.ui.Upcoming.UpcomingFragment"
         android:label="@string/title_upcoming"
-        tools:layout="@layout/fragment_upcoming" />
+        tools:layout="@layout/fragment_upcoming" >
+        <action
+            android:id="@+id/action_navigation_upcoming_to_detailFragmentUpcoming"
+            app:destination="@id/detailFragmentUpcoming" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_finished"
         android:name="com.example.aplikasievent.ui.Finished.FinishedFragment"
-        android:label="@string/title_finished"
-        tools:layout="@layout/fragment_finished" >
+        android:label="Finished Events"
+        tools:layout="@layout/fragment_finished">
+        <action
+            android:id="@+id/action_navigation_finished_to_detailFragmentFinished"
+            app:destination="@id/detailFragmentFinished" />
     </fragment>
 
+    <fragment
+        android:id="@+id/detailFragmentFinished"
+        android:name="com.example.aplikasievent.ui.Finished.DetailFragmentFinished"
+        android:label="Event Detail"
+        tools:layout="@layout/fragment_detail_finished" />
+
+    <fragment
+        android:id="@+id/detailFragmentUpcoming"
+        android:name="com.example.aplikasievent.ui.Upcoming.DetailFragmentUpcoming"
+        android:label="Event Detail"
+        tools:layout="@layout/fragment_detail_upcoming" />
 </navigation>

@@ -7,22 +7,27 @@ import com.bumptech.glide.Glide
 import com.example.aplikasievent.Event
 import com.example.aplikasievent.databinding.ItemEventUpcomingBinding
 
-class UpcomingAdapter : RecyclerView.Adapter<UpcomingAdapter.EventViewHolder>() {
+class UpcomingAdapter(private val onItemClick: (Event) -> Unit) : RecyclerView.Adapter<UpcomingAdapter.EventViewHolder>() {
 
     private var eventList: List<Event> = listOf()
 
-    class EventViewHolder(private val binding: ItemEventUpcomingBinding) : RecyclerView.ViewHolder(binding.root) {
+    class EventViewHolder(private val binding: ItemEventUpcomingBinding, val onItemClick: (Event) -> Unit) : RecyclerView.ViewHolder(binding.root) {
         fun bind(event: Event) {
             binding.eventName.text = event.name
             Glide.with(binding.eventImage.context)
                 .load(event.imageUrl)
                 .into(binding.eventImage)
+
+            // Set click listener on the item view
+            binding.root.setOnClickListener {
+                onItemClick(event)  // Trigger the callback when an item is clicked
+            }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder {
         val binding = ItemEventUpcomingBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return EventViewHolder(binding)
+        return EventViewHolder(binding, onItemClick)
     }
 
     override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
