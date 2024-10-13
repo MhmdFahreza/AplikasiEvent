@@ -5,7 +5,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitInstance {
 
-    // Base URL of the API
     private const val BASE_URL = "https://event-api.dicoding.dev/"
 
     private val retrofit by lazy {
@@ -15,7 +14,6 @@ object RetrofitInstance {
             .build()
     }
 
-    // Access the API service
     val api: EventApiService by lazy {
         retrofit.create(EventApiService::class.java)
     }
