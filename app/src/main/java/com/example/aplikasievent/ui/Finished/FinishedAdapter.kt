@@ -1,25 +1,27 @@
+package com.example.aplikasievent.ui.Finished
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.aplikasievent.Event
-import com.example.aplikasievent.databinding.FragmentFinishedBinding
+import com.example.aplikasievent.databinding.ItemEventFinishedBinding
 
 class FinishedAdapter : RecyclerView.Adapter<FinishedAdapter.EventViewHolder>() {
 
     private var eventList: List<Event> = listOf()
 
-    class EventViewHolder(private val binding: FragmentFinishedBinding) : RecyclerView.ViewHolder(binding.root) {
+    class EventViewHolder(private val binding: ItemEventFinishedBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(event: Event) {
-            binding.eventNameFinished.text = event.name
+            binding.eventName.text = event.name
             Glide.with(binding.eventImage.context)
-                .load(event.imageUrl) // Load the event image using Glide
-                .into(binding.eventImage) // Set the image in the ImageView
+                .load(event.imageUrl)
+                .into(binding.eventImage)
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder {
-        val binding = FragmentFinishedBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemEventFinishedBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return EventViewHolder(binding)
     }
 

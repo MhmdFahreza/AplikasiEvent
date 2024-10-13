@@ -16,13 +16,6 @@
         android:name="com.example.aplikasievent.ui.Finished.FinishedFragment"
         android:label="@string/title_finished"
         tools:layout="@layout/fragment_finished" >
-        <action
-            android:id="@+id/action_navigation_finished_to_detailFragmentFinished2"
-            app:destination="@id/detailFragmentFinished2" />
     </fragment>
-    <fragment
-        android:id="@+id/detailFragmentFinished2"
-        android:name="com.example.aplikasievent.ui.Finished.DetailFragmentFinished"
-        android:label="DetailFragmentFinished" />
 
 </navigation>
