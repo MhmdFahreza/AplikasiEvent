@@ -48,7 +48,7 @@ class DetailFragmentUpcoming : Fragment() {
 
                 // Set tombol untuk membuka link acara
                 binding.linkButton.setOnClickListener {
-                    val intent = Intent(Intent.ACTION_VIEW)
+                    val intent = Intent(Intent.ACTION_VIEW,)
                     intent.data = Uri.parse(event.link)
                     startActivity(intent)
                 }
