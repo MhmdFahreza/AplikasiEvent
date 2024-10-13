@@ -29,11 +29,19 @@
         android:id="@+id/detailFragmentFinished"
         android:name="com.example.aplikasievent.ui.Finished.DetailFragmentFinished"
         android:label="Event Detail"
-        tools:layout="@layout/fragment_detail_finished" />
+        tools:layout="@layout/fragment_detail_finished" >
+        <argument
+            android:name="eventId"
+            app:argType="integer" />
+    </fragment>
 
     <fragment
         android:id="@+id/detailFragmentUpcoming"
         android:name="com.example.aplikasievent.ui.Upcoming.DetailFragmentUpcoming"
         android:label="Event Detail"
-        tools:layout="@layout/fragment_detail_upcoming" />
+        tools:layout="@layout/fragment_detail_upcoming" >
+        <argument
+            android:name="eventId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

@@ -2,6 +2,7 @@ package com.example.aplikasievent.ui.Upcoming
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.aplikasievent.Event
@@ -20,7 +21,8 @@ class UpcomingAdapter(private val onItemClick: (Event) -> Unit) : RecyclerView.A
 
             // Set click listener on the item view
             binding.root.setOnClickListener {
-                onItemClick(event)  // Trigger the callback when an item is clicked
+                val action = UpcomingFragmentDirections.actionNavigationUpcomingToDetailFragmentUpcoming(event.id)
+                it.findNavController().navigate(action)
             }
         }
     }

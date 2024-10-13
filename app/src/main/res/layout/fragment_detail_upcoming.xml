@@ -5,10 +5,79 @@
     android:layout_height="match_parent"
     tools:context=".ui.Upcoming.DetailFragmentUpcoming">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Gambar (mediaCover) -->
+            <ImageView
+                android:id="@+id/mediaCover"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bootcamp" />
+
+            <!-- Nama acara (name) -->
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/event_name_upcoming"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:paddingTop="8dp"
+                android:paddingBottom="4dp" />
+
+            <!-- Penyelenggara acara (ownerName) -->
+            <TextView
+                android:id="@+id/ownerName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/owner_name_upcoming"
+                android:textSize="18sp"
+                android:paddingBottom="4dp" />
+
+            <!-- Waktu acara (beginTime) -->
+            <TextView
+                android:id="@+id/beginTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/begin_time_upcoming"
+                android:textSize="18sp"
+                android:paddingBottom="4dp" />
+
+            <!-- Sisa kuota (quota - registrant) -->
+            <TextView
+                android:id="@+id/quota"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/event_quota_upcoming"
+                android:textSize="18sp"
+                android:paddingBottom="4dp" />
+
+            <!-- Deskripsi acara (description) -->
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/event_description_upcoming"
+                android:textSize="16sp"
+                android:paddingBottom="16dp" />
+
+            <!-- Tombol untuk membuka link acara (link) -->
+            <Button
+                android:id="@+id/linkButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/open_event_link_upcoming"
+                android:layout_gravity="center" />
+        </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>

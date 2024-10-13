@@ -2,6 +2,7 @@ package com.example.aplikasievent.ui.Finished
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.aplikasievent.Event
@@ -18,9 +19,11 @@ class FinishedAdapter(private val onItemClick: (Event) -> Unit) : RecyclerView.A
                 .load(event.imageUrl)
                 .into(binding.eventImage)
 
+            // Set click listener on the item view
             binding.root.setOnClickListener {
-                onItemClick(event)
-
+                // Menggunakan NavController untuk menavigasi dan mengirim ID event ke DetailFragment
+                val action = FinishedFragmentDirections.actionNavigationFinishedToDetailFragmentFinished(event.id)
+                it.findNavController().navigate(action)
             }
         }
     }

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.aplikasievent.Event
 import com.example.aplikasievent.network.RetrofitInstance
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class UpcomingViewModel : ViewModel() {
@@ -24,6 +25,7 @@ class UpcomingViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 _loading.postValue(true)
+                delay(1000)
                 val response = RetrofitInstance.api.getUpcomingEvents()
                 _upcomingEvents.postValue(response.listEvents)
             } catch (e: Exception) {
@@ -32,5 +34,9 @@ class UpcomingViewModel : ViewModel() {
                 _loading.postValue(false)
             }
         }
+    }
+
+    fun getEventById(eventId: Int): LiveData<Event?> {
+        return MutableLiveData(upcomingEvents.value?.find { it.id == eventId })
     }
 }
