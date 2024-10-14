@@ -6,9 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.aplikasievent.R
 import com.example.aplikasievent.databinding.FragmentUpcomingBinding
 
 class UpcomingFragment : Fragment() {
@@ -28,7 +26,7 @@ class UpcomingFragment : Fragment() {
 
         // Initialize adapter
         upcomingAdapter = UpcomingAdapter { event ->
-            findNavController().navigate(R.id.action_navigation_upcoming_to_detailFragmentUpcoming)
+            // Handle click
         }
 
         binding.recyclerView.apply {
@@ -37,7 +35,7 @@ class UpcomingFragment : Fragment() {
         }
 
         upcomingViewModel.upcomingEvents.observe(viewLifecycleOwner) { events ->
-            upcomingAdapter.submitList(events.take(2))  // Display only the first 2 events
+            upcomingAdapter.submitList(events)
         }
 
         upcomingViewModel.loading.observe(viewLifecycleOwner) { isLoading ->

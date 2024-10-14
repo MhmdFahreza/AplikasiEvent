@@ -16,9 +16,17 @@ class UpcomingAdapter(private val onItemClick: (Event) -> Unit) : RecyclerView.A
     class EventViewHolder(private val binding: ItemEventUpcomingBinding, val onItemClick: (Event) -> Unit) : RecyclerView.ViewHolder(binding.root) {
         fun bind(event: Event) {
             binding.eventName.text = event.name
+
+            // Assign a placeholder based on event's ID or any other attribute
+            val placeholderRes = when (event.id % 3) {
+                1 -> R.drawable.bootcamp
+                2 -> R.drawable.devkoch173
+                else -> R.drawable.error_image
+            }
+
             Glide.with(binding.eventImage.context)
                 .load(event.imageUrl)
-                .placeholder(R.drawable.devkoch173)
+                .placeholder(placeholderRes)
                 .into(binding.eventImage)
 
             // Set click listener on the item view

@@ -1,5 +1,6 @@
 package com.example.aplikasievent.ui.Finished
 
+import FinishedAdapter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
