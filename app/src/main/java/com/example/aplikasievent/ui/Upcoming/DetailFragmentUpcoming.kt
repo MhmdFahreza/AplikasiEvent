@@ -36,21 +36,16 @@ class DetailFragmentUpcoming : Fragment() {
 
         val eventId = arguments?.getInt("eventId") ?: return
 
-        // Sembunyikan link button saat loading
         binding.linkButton.visibility = View.GONE
-        // Tampilkan indikator loading saat data dimuat
         binding.progressBar.visibility = View.VISIBLE
 
-        // Delay 2 detik untuk simulasi loading
         Handler(Looper.getMainLooper()).postDelayed({
             viewModel.upcomingEvents.observe(viewLifecycleOwner, Observer { events ->
                 val event = events.find { it.id == eventId }
                 event?.let {
                     bindEventData(it)
                 }
-                // Hilangkan indikator loading setelah data dimuat
                 binding.progressBar.visibility = View.GONE
-                // Tampilkan link button setelah loading selesai
                 binding.linkButton.visibility = View.VISIBLE
             })
         }, 2000)
@@ -90,3 +85,4 @@ class DetailFragmentUpcoming : Fragment() {
         _binding = null
     }
 }
+

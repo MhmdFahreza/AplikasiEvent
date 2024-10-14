@@ -8,7 +8,6 @@ data class Event(
     val beginTime: String,
     val quota: Int,
     val registrant: Int,
-    val sisaquota: Int,
     val description: String,
     val link: String
 )
