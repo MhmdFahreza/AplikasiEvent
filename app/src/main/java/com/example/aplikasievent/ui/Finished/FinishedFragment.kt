@@ -38,7 +38,7 @@ class FinishedFragment : Fragment() {
         }
 
         finishedViewModel.finishedEvents.observe(viewLifecycleOwner) { events ->
-            finishedAdapter.submitList(events.take(2))  // Show only 2 events
+            finishedAdapter.submitList(events)
         }
 
         finishedViewModel.loading.observe(viewLifecycleOwner) { isLoading ->
