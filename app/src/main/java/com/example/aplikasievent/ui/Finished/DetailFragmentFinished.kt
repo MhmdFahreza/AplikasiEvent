@@ -44,11 +44,9 @@ class DetailFragmentFinished : Fragment() {
             if (event != null) {
                 val position = events.indexOf(event)
                 bindEventData(event, position)
-                // Hide loading when data is successfully loaded
                 binding.progressBar.visibility = View.GONE
                 binding.linkButton.visibility = View.VISIBLE
             } else {
-                // If no event is found, hide progress bar and keep link button hidden
                 binding.progressBar.visibility = View.GONE
                 binding.linkButton.visibility = View.GONE
             }
@@ -80,9 +78,7 @@ class DetailFragmentFinished : Fragment() {
     }
 
     private fun getPlaceholderImage(position: Int): Int {
-        // Image placeholder logic
         return when (position % 38 + 1) {
-            // Your placeholder images as defined previously
             else -> R.drawable.error_image
         }
     }

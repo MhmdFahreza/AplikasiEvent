@@ -34,20 +34,16 @@ class DetailFragmentUpcoming : Fragment() {
 
         val eventId = arguments?.getInt("eventId") ?: return
 
-        // Show loading initially
         binding.progressBar.visibility = View.VISIBLE
         binding.linkButton.visibility = View.GONE
 
-        // Observe the data from ViewModel
         viewModel.upcomingEvents.observe(viewLifecycleOwner, Observer { events ->
             val event = events.find { it.id == eventId }
             if (event != null) {
                 bindEventData(event)
-                // Hide loading when data is successfully loaded
                 binding.progressBar.visibility = View.GONE
                 binding.linkButton.visibility = View.VISIBLE
             } else {
-                // If no event is found, hide progress bar and keep link button hidden
                 binding.progressBar.visibility = View.GONE
                 binding.linkButton.visibility = View.GONE
             }
