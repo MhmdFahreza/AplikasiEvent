@@ -20,15 +20,13 @@
                 android:id="@+id/mediaCover"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/devcoach" />
+                android:scaleType="centerCrop" />
 
             <!-- Nama acara (name) -->
             <TextView
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/event_name_upcoming"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:paddingTop="8dp"
@@ -39,7 +37,6 @@
                 android:id="@+id/ownerName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/owner_name_upcoming"
                 android:textSize="18sp"
                 android:paddingBottom="4dp" />
 
@@ -48,7 +45,6 @@
                 android:id="@+id/beginTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/begin_time_upcoming"
                 android:textSize="18sp"
                 android:paddingBottom="4dp" />
 
@@ -57,7 +53,6 @@
                 android:id="@+id/quota"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/event_quota_upcoming"
                 android:textSize="18sp"
                 android:paddingBottom="4dp" />
 
@@ -66,7 +61,6 @@
                 android:id="@+id/description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/event_description_upcoming"
                 android:textSize="16sp"
                 android:paddingBottom="16dp" />
 
@@ -75,7 +69,7 @@
                 android:id="@+id/linkButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/open_event_link_upcoming"
+                android:text="Buka Link Acara"
                 android:layout_gravity="center" />
         </LinearLayout>
     </ScrollView>
