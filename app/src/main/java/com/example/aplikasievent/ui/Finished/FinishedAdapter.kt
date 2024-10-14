@@ -6,6 +6,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.aplikasievent.Event
+import com.example.aplikasievent.R
 import com.example.aplikasievent.databinding.ItemEventFinishedBinding
 
 class FinishedAdapter : RecyclerView.Adapter<FinishedAdapter.EventViewHolder>() {
@@ -17,6 +18,7 @@ class FinishedAdapter : RecyclerView.Adapter<FinishedAdapter.EventViewHolder>() 
             binding.eventName.text = event.name
             Glide.with(binding.eventImage.context)
                 .load(event.imageUrl)
+                .placeholder(R.drawable.devcoach)
                 .into(binding.eventImage)
 
             // Set click listener on the item view

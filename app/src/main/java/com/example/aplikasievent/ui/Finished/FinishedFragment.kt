@@ -24,7 +24,7 @@ class FinishedFragment : Fragment() {
 
         _binding = FragmentFinishedBinding.inflate(inflater, container, false)
 
-        // Initialize adapter and pass event listener lambda to handle click
+        // Initialize adapter
         finishedAdapter = FinishedAdapter()
 
         binding.recyclerView.apply {

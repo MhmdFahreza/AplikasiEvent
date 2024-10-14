@@ -26,6 +26,7 @@ class UpcomingFragment : Fragment() {
 
         _binding = FragmentUpcomingBinding.inflate(inflater, container, false)
 
+        // Initialize adapter
         upcomingAdapter = UpcomingAdapter { event ->
             findNavController().navigate(R.id.action_navigation_upcoming_to_detailFragmentUpcoming)
         }
