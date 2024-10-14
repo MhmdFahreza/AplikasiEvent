@@ -58,7 +58,7 @@ class DetailFragmentUpcoming : Fragment() {
         val formattedDescription = HtmlCompat.fromHtml(event.description, HtmlCompat.FROM_HTML_MODE_LEGACY)
         binding.description.text = formattedDescription
 
-        val remainingQuota = event.quota - event.registrant
+        val remainingQuota = event.quota - event.registrants
         binding.sisaKuota.text = "Sisa Kuota: $remainingQuota"
 
         val placeholderRes = when (event.id % 3) {
