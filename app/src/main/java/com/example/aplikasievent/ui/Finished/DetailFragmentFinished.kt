@@ -1,3 +1,4 @@
+package com.example.aplikasievent.ui.Finished
 
 import android.content.Intent
 import android.net.Uri
@@ -12,7 +13,6 @@ import com.bumptech.glide.Glide
 import com.example.aplikasievent.Event
 import com.example.aplikasievent.R
 import com.example.aplikasievent.databinding.FragmentDetailFinishedBinding
-import com.example.aplikasievent.ui.Finished.FinishedViewModel
 
 class DetailFragmentFinished : Fragment() {
 
@@ -33,6 +33,7 @@ class DetailFragmentFinished : Fragment() {
 
         val eventId = arguments?.getInt("eventId") ?: return
 
+        // Observe finished events from the ViewModel
         viewModel.finishedEvents.observe(viewLifecycleOwner, Observer { events ->
             val event = events.find { it.id == eventId }
             event?.let {
@@ -56,6 +57,8 @@ class DetailFragmentFinished : Fragment() {
             .load(event.imageUrl)
             .placeholder(placeholderRes)
             .into(binding.mediaCover)
+
+
 
         binding.linkButton.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW)

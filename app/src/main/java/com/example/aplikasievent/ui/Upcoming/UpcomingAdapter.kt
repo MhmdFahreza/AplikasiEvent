@@ -17,6 +17,7 @@ class UpcomingAdapter(private val onItemClick: (Event) -> Unit) : RecyclerView.A
         fun bind(event: Event) {
             binding.eventName.text = event.name
 
+            // Assign a placeholder based on event's ID or any other attribute
             val placeholderRes = when (event.id % 3) {
                 1 -> R.drawable.bootcamp
                 2 -> R.drawable.devkoch173
@@ -28,6 +29,7 @@ class UpcomingAdapter(private val onItemClick: (Event) -> Unit) : RecyclerView.A
                 .placeholder(placeholderRes)
                 .into(binding.eventImage)
 
+            // Set click listener on the item view
             binding.root.setOnClickListener {
                 val action = UpcomingFragmentDirections.actionNavigationUpcomingToDetailFragmentUpcoming(event.id)
                 it.findNavController().navigate(action)

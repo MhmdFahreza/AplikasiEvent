@@ -15,6 +15,7 @@
             android:orientation="vertical"
             android:padding="16dp">
 
+
             <ImageView
                 android:id="@+id/mediaCover"
                 android:layout_width="match_parent"
@@ -44,6 +45,7 @@
                 android:textSize="18sp"
                 android:paddingBottom="4dp" />
 
+
             <TextView
                 android:id="@+id/quota"
                 android:layout_width="match_parent"
@@ -51,12 +53,14 @@
                 android:textSize="18sp"
                 android:paddingBottom="4dp" />
 
+
             <TextView
                 android:id="@+id/description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
                 android:paddingBottom="16dp" />
+
 
             <Button
                 android:id="@+id/linkButton"

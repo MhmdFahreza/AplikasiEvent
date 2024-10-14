@@ -1,3 +1,5 @@
+package com.example.aplikasievent.ui.Finished
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
@@ -6,7 +8,6 @@ import com.bumptech.glide.Glide
 import com.example.aplikasievent.Event
 import com.example.aplikasievent.R
 import com.example.aplikasievent.databinding.ItemEventFinishedBinding
-import com.example.aplikasievent.ui.Finished.FinishedFragmentDirections
 
 
 class FinishedAdapter : RecyclerView.Adapter<FinishedAdapter.EventViewHolder>() {
@@ -17,12 +18,15 @@ class FinishedAdapter : RecyclerView.Adapter<FinishedAdapter.EventViewHolder>() 
         fun bind(event: Event, position: Int) {
             binding.eventName.text = event.name
 
+
             val placeholderRes = getPlaceholderImage(position)
 
+            // Load the event image with placeholder
             Glide.with(binding.eventImage.context)
                 .load(event.imageUrl)
                 .placeholder(placeholderRes)
                 .into(binding.eventImage)
+
 
             binding.root.setOnClickListener {
                 val action = FinishedFragmentDirections.actionNavigationFinishedToDetailFragmentFinished(event.id)
@@ -31,7 +35,7 @@ class FinishedAdapter : RecyclerView.Adapter<FinishedAdapter.EventViewHolder>() 
         }
 
         private fun getPlaceholderImage(position: Int): Int {
-            return when (position % 38 + 1) { // Adjust position to start from 1 for easier readability
+            return when (position % 38 + 1) {
                 1 -> R.drawable.dosdevcoach_172
                 2 -> R.drawable.offline_event_baparekraf
                 3 -> R.drawable.devcoach_171_machine_learning_in_google
