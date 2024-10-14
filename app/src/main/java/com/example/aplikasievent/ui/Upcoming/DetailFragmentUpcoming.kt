@@ -48,14 +48,12 @@ class DetailFragmentUpcoming : Fragment() {
         binding.quota.text = "${event.quota - event.registrant} kuota tersisa"
         binding.description.text = event.description
 
-        // Assign a placeholder based on event's ID or any other attribute
         val placeholderRes = when (event.id % 3) {
             1 -> R.drawable.bootcamp
             2 -> R.drawable.devkoch173
             else -> R.drawable.error_image
         }
 
-        // Load image with placeholder
         Glide.with(this)
             .load(event.imageUrl)
             .placeholder(placeholderRes)

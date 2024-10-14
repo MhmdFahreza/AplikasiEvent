@@ -17,16 +17,13 @@ class FinishedAdapter : RecyclerView.Adapter<FinishedAdapter.EventViewHolder>() 
         fun bind(event: Event, position: Int) {
             binding.eventName.text = event.name
 
-            // Select the placeholder image based on the event's position in the list, not the eventId
             val placeholderRes = getPlaceholderImage(position)
 
-            // Load the event image with placeholder
             Glide.with(binding.eventImage.context)
                 .load(event.imageUrl)
                 .placeholder(placeholderRes)
                 .into(binding.eventImage)
 
-            // Set click listener to navigate to the detail fragment
             binding.root.setOnClickListener {
                 val action = FinishedFragmentDirections.actionNavigationFinishedToDetailFragmentFinished(event.id)
                 it.findNavController().navigate(action)

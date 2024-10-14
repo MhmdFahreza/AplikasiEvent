@@ -33,11 +33,10 @@ class DetailFragmentFinished : Fragment() {
 
         val eventId = arguments?.getInt("eventId") ?: return
 
-        // Observe finished events from the ViewModel
         viewModel.finishedEvents.observe(viewLifecycleOwner, Observer { events ->
             val event = events.find { it.id == eventId }
             event?.let {
-                val position = events.indexOf(it)  // Find the position of the event in the list
+                val position = events.indexOf(it)
                 bindEventData(it, position)
             }
         })
@@ -50,7 +49,6 @@ class DetailFragmentFinished : Fragment() {
         binding.quota.text = "${event.quota - event.registrant} kuota tersisa"
         binding.description.text = event.description
 
-        // Select the placeholder image based on the event's position in the list
         val placeholderRes = getPlaceholderImage(position)
 
         // Load image with the selected placeholder
@@ -59,7 +57,6 @@ class DetailFragmentFinished : Fragment() {
             .placeholder(placeholderRes)
             .into(binding.mediaCover)
 
-        // Set button click to open the event link
         binding.linkButton.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse(event.link)
@@ -68,7 +65,7 @@ class DetailFragmentFinished : Fragment() {
     }
 
     private fun getPlaceholderImage(position: Int): Int {
-        return when (position % 38 + 1) { // Adjust position to start from 1 for easier readability
+        return when (position % 38 + 1) {
             1 -> R.drawable.dosdevcoach_172
             2 -> R.drawable.offline_event_baparekraf
             3 -> R.drawable.devcoach_171_machine_learning_in_google

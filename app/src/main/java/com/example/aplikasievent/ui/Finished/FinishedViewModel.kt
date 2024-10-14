@@ -28,7 +28,7 @@ class FinishedViewModel : ViewModel() {
                 _finishedEvents.postValue(response.listEvents)
             } catch (e: Exception) {
                 e.printStackTrace()
-                _finishedEvents.postValue(emptyList()) // Atau tangani error sesuai kebutuhan
+                _finishedEvents.postValue(emptyList())
             } finally {
                 _loading.postValue(false)
             }
