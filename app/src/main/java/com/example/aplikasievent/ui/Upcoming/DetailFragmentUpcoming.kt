@@ -3,8 +3,6 @@ package com.example.aplikasievent.ui.Upcoming
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,19 +34,24 @@ class DetailFragmentUpcoming : Fragment() {
 
         val eventId = arguments?.getInt("eventId") ?: return
 
-        binding.linkButton.visibility = View.GONE
+        // Show loading initially
         binding.progressBar.visibility = View.VISIBLE
+        binding.linkButton.visibility = View.GONE
 
-        Handler(Looper.getMainLooper()).postDelayed({
-            viewModel.upcomingEvents.observe(viewLifecycleOwner, Observer { events ->
-                val event = events.find { it.id == eventId }
-                event?.let {
-                    bindEventData(it)
-                }
+        // Observe the data from ViewModel
+        viewModel.upcomingEvents.observe(viewLifecycleOwner, Observer { events ->
+            val event = events.find { it.id == eventId }
+            if (event != null) {
+                bindEventData(event)
+                // Hide loading when data is successfully loaded
                 binding.progressBar.visibility = View.GONE
                 binding.linkButton.visibility = View.VISIBLE
-            })
-        }, 2000)
+            } else {
+                // If no event is found, hide progress bar and keep link button hidden
+                binding.progressBar.visibility = View.GONE
+                binding.linkButton.visibility = View.GONE
+            }
+        })
     }
 
     private fun bindEventData(event: Event) {
@@ -56,11 +59,11 @@ class DetailFragmentUpcoming : Fragment() {
         binding.ownerName.text = event.ownerName
         binding.beginTime.text = event.beginTime
 
-        val remainingQuota = event.quota - event.registrant
-        binding.quota.text = "$remainingQuota kuota tersisa"
-
         val formattedDescription = HtmlCompat.fromHtml(event.description, HtmlCompat.FROM_HTML_MODE_LEGACY)
         binding.description.text = formattedDescription
+
+        val remainingQuota = event.quota - event.registrant
+        binding.sisaKuota.text = "Sisa Kuota: $remainingQuota"
 
         val placeholderRes = when (event.id % 3) {
             1 -> R.drawable.bootcamp
@@ -85,4 +88,3 @@ class DetailFragmentUpcoming : Fragment() {
         _binding = null
     }
 }
-
