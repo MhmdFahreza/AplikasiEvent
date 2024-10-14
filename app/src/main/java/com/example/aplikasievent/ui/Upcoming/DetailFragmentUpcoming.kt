@@ -3,9 +3,12 @@ package com.example.aplikasievent.ui.Upcoming
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -33,29 +36,43 @@ class DetailFragmentUpcoming : Fragment() {
 
         val eventId = arguments?.getInt("eventId") ?: return
 
-        viewModel.upcomingEvents.observe(viewLifecycleOwner, Observer { events ->
-            val event = events.find { it.id == eventId }
-            event?.let {
-                bindEventData(it)
-            }
-        })
+        // Sembunyikan link button saat loading
+        binding.linkButton.visibility = View.GONE
+        // Tampilkan indikator loading saat data dimuat
+        binding.progressBar.visibility = View.VISIBLE
+
+        // Delay 2 detik untuk simulasi loading
+        Handler(Looper.getMainLooper()).postDelayed({
+            viewModel.upcomingEvents.observe(viewLifecycleOwner, Observer { events ->
+                val event = events.find { it.id == eventId }
+                event?.let {
+                    bindEventData(it)
+                }
+                // Hilangkan indikator loading setelah data dimuat
+                binding.progressBar.visibility = View.GONE
+                // Tampilkan link button setelah loading selesai
+                binding.linkButton.visibility = View.VISIBLE
+            })
+        }, 2000)
     }
 
     private fun bindEventData(event: Event) {
         binding.name.text = event.name
         binding.ownerName.text = event.ownerName
         binding.beginTime.text = event.beginTime
-        binding.quota.text = "${event.quota - event.registrant} kuota tersisa"
-        binding.description.text = event.description
 
-        // Assign a placeholder based on event's ID or any other attribute
+        val remainingQuota = event.quota - event.registrant
+        binding.quota.text = "$remainingQuota kuota tersisa"
+
+        val formattedDescription = HtmlCompat.fromHtml(event.description, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        binding.description.text = formattedDescription
+
         val placeholderRes = when (event.id % 3) {
             1 -> R.drawable.bootcamp
             2 -> R.drawable.devkoch173
             else -> R.drawable.error_image
         }
 
-        // Load image with placeholder
         Glide.with(this)
             .load(event.imageUrl)
             .placeholder(placeholderRes)
