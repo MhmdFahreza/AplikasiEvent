@@ -21,7 +21,6 @@ class FinishedAdapter : RecyclerView.Adapter<FinishedAdapter.EventViewHolder>() 
 
             val placeholderRes = getPlaceholderImage(position)
 
-            // Load the event image with placeholder
             Glide.with(binding.eventImage.context)
                 .load(event.imageUrl)
                 .placeholder(placeholderRes)

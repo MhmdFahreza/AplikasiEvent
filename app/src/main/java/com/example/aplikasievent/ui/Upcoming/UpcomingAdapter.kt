@@ -14,25 +14,27 @@ class UpcomingAdapter(private val onItemClick: (Event) -> Unit) : RecyclerView.A
     private var eventList: List<Event> = listOf()
 
     class EventViewHolder(private val binding: ItemEventUpcomingBinding, val onItemClick: (Event) -> Unit) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(event: Event) {
+        fun bind(event: Event, position: Int) {
             binding.eventName.text = event.name
 
-            // Assign a placeholder based on event's ID or any other attribute
-            val placeholderRes = when (event.id % 3) {
-                1 -> R.drawable.bootcamp
-                2 -> R.drawable.devkoch173
-                else -> R.drawable.error_image
-            }
+            val placeholderRes = getPlaceholderImage(position)
 
             Glide.with(binding.eventImage.context)
                 .load(event.imageUrl)
                 .placeholder(placeholderRes)
                 .into(binding.eventImage)
 
-            // Set click listener on the item view
             binding.root.setOnClickListener {
                 val action = UpcomingFragmentDirections.actionNavigationUpcomingToDetailFragmentUpcoming(event.id)
                 it.findNavController().navigate(action)
+            }
+        }
+
+        private fun getPlaceholderImage(position: Int): Int {
+            return when (position % 38 + 1) {
+                1 -> R.drawable.bootcamp
+                2 -> R.drawable.devkoch173
+                else -> R.drawable.error_image
             }
         }
     }
@@ -43,7 +45,7 @@ class UpcomingAdapter(private val onItemClick: (Event) -> Unit) : RecyclerView.A
     }
 
     override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
-        holder.bind(eventList[position])
+        holder.bind(eventList[position], position)
     }
 
     override fun getItemCount(): Int = eventList.size

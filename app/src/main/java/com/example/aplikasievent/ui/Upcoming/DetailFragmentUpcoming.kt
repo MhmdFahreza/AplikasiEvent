@@ -40,7 +40,8 @@ class DetailFragmentUpcoming : Fragment() {
         viewModel.upcomingEvents.observe(viewLifecycleOwner, Observer { events ->
             val event = events.find { it.id == eventId }
             if (event != null) {
-                bindEventData(event)
+                val position = events.indexOf(event)
+                bindEventData(event, position)
                 binding.progressBar.visibility = View.GONE
                 binding.linkButton.visibility = View.VISIBLE
             } else {
@@ -50,7 +51,7 @@ class DetailFragmentUpcoming : Fragment() {
         })
     }
 
-    private fun bindEventData(event: Event) {
+    private fun bindEventData(event: Event, position: Int) {
         binding.name.text = event.name
         binding.ownerName.text = event.ownerName
         binding.beginTime.text = event.beginTime
@@ -61,11 +62,7 @@ class DetailFragmentUpcoming : Fragment() {
         val remainingQuota = event.quota - event.registrants
         binding.sisaKuota.text = "Sisa Kuota: $remainingQuota"
 
-        val placeholderRes = when (event.id % 3) {
-            1 -> R.drawable.bootcamp
-            2 -> R.drawable.devkoch173
-            else -> R.drawable.error_image
-        }
+        val placeholderRes = getPlaceholderImage(position)
 
         Glide.with(this)
             .load(event.imageUrl)
@@ -76,6 +73,14 @@ class DetailFragmentUpcoming : Fragment() {
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse(event.link)
             startActivity(intent)
+        }
+    }
+
+    private fun getPlaceholderImage(position: Int): Int {
+        return when (position % 38 + 1) {
+            1 -> R.drawable.bootcamp
+            2 -> R.drawable.devkoch173
+            else -> R.drawable.error_image
         }
     }
 
