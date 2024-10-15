@@ -32,7 +32,7 @@
     <fragment
         android:id="@+id/navigation_setting"
         android:name="com.example.aplikasievent.ui.Setting.SettingFragment"
-        android:label="@string/title_upcoming"
+        android:label="@string/title_setting"
         tools:layout="@layout/fragment_setting" >
     </fragment>
 

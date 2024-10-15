@@ -1,60 +1,80 @@
-package com.example.aplikasievent.ui.Setting
-
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
-import com.example.aplikasievent.R
+import androidx.lifecycle.lifecycleScope
+import com.example.aplikasievent.databinding.FragmentSettingBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [SettingFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class SettingFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    private var _binding: FragmentSettingBinding? = null
+    private val binding get() = _binding!!
+
+    private lateinit var sharedPreferences: SharedPreferences
+    private val PREFS_NAME = "theme_prefs"
+    private val PREFS_THEME_KEY = "current_theme"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+        // No need to apply the theme here, we'll do it in Activity
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_setting, container, false)
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentSettingBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SettingFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SettingFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        sharedPreferences = requireContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+
+        // Load saved theme state
+        val isDarkTheme = sharedPreferences.getBoolean(PREFS_THEME_KEY, false)
+        binding.switchTheme.isChecked = isDarkTheme
+
+        binding.switchTheme.setOnCheckedChangeListener { _, isChecked ->
+            // Save theme preference
+            sharedPreferences.edit().putBoolean(PREFS_THEME_KEY, isChecked).apply()
+            setAppTheme(isChecked)
+        }
+
+        // Handle progress bar and background task
+        binding.progressBar.visibility = View.VISIBLE
+        lifecycleScope.launch(Dispatchers.IO) {
+            // Simulate API request
+            val result = performApiRequest()
+            launch(Dispatchers.Main) {
+                binding.progressBar.visibility = View.GONE
+                binding.textView.text = result
             }
+        }
+    }
+
+    private fun setAppTheme(isDarkTheme: Boolean) {
+        if (isDarkTheme) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
+    }
+
+    private suspend fun performApiRequest(): String {
+        // Simulate a delay to mimic an API call
+        kotlinx.coroutines.delay(2000)  // Simulate 2 seconds delay
+        return "Pengaturan Tema"
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

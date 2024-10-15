@@ -6,8 +6,16 @@ import androidx.lifecycle.ViewModel
 
 class SettingViewModel : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is Setting Fragment"
+    private val _isDarkMode = MutableLiveData<Boolean>()
+    val isDarkMode: LiveData<Boolean> get() = _isDarkMode
+
+    fun setDarkModeEnabled(enabled: Boolean) {
+        _isDarkMode.value = enabled
     }
-    val text: LiveData<String> = _text
+
+    fun toggleTheme() {
+        _isDarkMode.value = _isDarkMode.value != true
+    }
+
+
 }
