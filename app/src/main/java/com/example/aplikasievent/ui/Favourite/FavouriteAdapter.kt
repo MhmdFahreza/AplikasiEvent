@@ -8,12 +8,13 @@ import com.example.aplikasievent.Event
 import com.example.aplikasievent.R
 import com.example.aplikasievent.databinding.ItemEventFavouriteBinding
 
-class FavouriteAdapter : RecyclerView.Adapter<FavouriteAdapter.EventViewHolder>() {
+class FavouriteAdapter(private val onItemClick: (Event) -> Unit) :
+    RecyclerView.Adapter<FavouriteAdapter.EventViewHolder>() {
 
     private var eventList: List<Event> = listOf()
 
     class EventViewHolder(private val binding: ItemEventFavouriteBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(event: Event) {
+        fun bind(event: Event, onItemClick: (Event) -> Unit) {
             binding.eventName.text = event.name
 
             // Pilih placeholder berdasarkan ID event
@@ -23,6 +24,11 @@ class FavouriteAdapter : RecyclerView.Adapter<FavouriteAdapter.EventViewHolder>(
                 .load(event.imageUrl)
                 .placeholder(placeholderRes)
                 .into(binding.eventImage)
+
+            // Set click listener
+            binding.root.setOnClickListener {
+                onItemClick(event)
+            }
         }
 
         // Fungsi untuk mendapatkan gambar placeholder berdasarkan ID event dari API
@@ -79,7 +85,7 @@ class FavouriteAdapter : RecyclerView.Adapter<FavouriteAdapter.EventViewHolder>(
     }
 
     override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
-        holder.bind(eventList[position])
+        holder.bind(eventList[position], onItemClick)
     }
 
     override fun getItemCount(): Int = eventList.size

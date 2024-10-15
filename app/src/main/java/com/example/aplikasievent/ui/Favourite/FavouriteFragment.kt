@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.aplikasievent.databinding.FragmentFavouriteBinding
 
@@ -13,7 +14,9 @@ class FavouriteFragment : Fragment() {
 
     private var _binding: FragmentFavouriteBinding? = null
     private val binding get() = _binding!!
-    private val adapter = FavouriteAdapter()
+    private val adapter = FavouriteAdapter { event ->
+        navigateToDetail(event.id, event.isFavorite)
+    }
     private val favouriteViewModel: FavouriteViewModel by viewModels()
 
     override fun onCreateView(
@@ -52,6 +55,16 @@ class FavouriteFragment : Fragment() {
 
         // Load data
         favouriteViewModel.loadFavorites()
+    }
+
+    private fun navigateToDetail(eventId: Int, isFinished: Boolean) {
+        if (isFinished) {
+            val action = FavouriteFragmentDirections.actionNavigationFavouriteToDetailFragmentFinished(eventId)
+            findNavController().navigate(action)
+        } else {
+            val action = FavouriteFragmentDirections.actionNavigationFavouriteToDetailFragmentUpcoming(eventId)
+            findNavController().navigate(action)
+        }
     }
 
     override fun onDestroyView() {
