@@ -16,6 +16,20 @@
     </fragment>
 
     <fragment
+        android:id="@+id/navigation_favourite"
+        android:name="com.example.aplikasievent.ui.Favourite.FavouriteFragment"
+        android:label="@string/title_upcoming"
+        tools:layout="@layout/fragment_favourite" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_setting"
+        android:name="com.example.aplikasievent.ui.Setting.SettingFragment"
+        android:label="@string/title_upcoming"
+        tools:layout="@layout/fragment_setting" >
+    </fragment>
+
+    <fragment
         android:id="@+id/navigation_finished"
         android:name="com.example.aplikasievent.ui.Finished.FinishedFragment"
         android:label="Finished Events"

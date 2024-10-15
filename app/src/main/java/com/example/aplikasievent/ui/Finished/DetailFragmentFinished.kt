@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.example.aplikasievent.Event
 import com.example.aplikasievent.R
 import com.example.aplikasievent.databinding.FragmentDetailFinishedBinding
+import com.example.aplikasievent.ui.Favourite.FavouriteManager
 
 class DetailFragmentFinished : Fragment() {
 
@@ -32,13 +33,14 @@ class DetailFragmentFinished : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Initialize FavouriteManager with context
+        FavouriteManager.init(requireContext())
+
         val eventId = arguments?.getInt("eventId") ?: return
 
-        // Show loading initially
         binding.progressBar.visibility = View.VISIBLE
         binding.linkButton.visibility = View.GONE
 
-        // Observe the data from ViewModel
         viewModel.finishedEvents.observe(viewLifecycleOwner, Observer { events ->
             val event = events.find { it.id == eventId }
             if (event != null) {
@@ -52,8 +54,6 @@ class DetailFragmentFinished : Fragment() {
             }
         })
     }
-
-
 
     private fun bindEventData(event: Event, position: Int) {
         binding.name.text = event.name
@@ -76,6 +76,20 @@ class DetailFragmentFinished : Fragment() {
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse(event.link)
             startActivity(intent)
+        }
+
+        // Handle favourite
+        val isFavourited = FavouriteManager.isFavourite(event)
+        binding.favouriteButton.setImageResource(if (isFavourited) R.drawable.ic_favourite_button else R.drawable.ic_favourite_button)
+
+        binding.favouriteButton.setOnClickListener {
+            if (isFavourited) {
+                FavouriteManager.removeFavourite(event)
+                binding.favouriteButton.setImageResource(R.drawable.ic_favourite_button)
+            } else {
+                FavouriteManager.addFavourite(event)
+                binding.favouriteButton.setImageResource(R.drawable.ic_favourite_button)
+            }
         }
     }
 

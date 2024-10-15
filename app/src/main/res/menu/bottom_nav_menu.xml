@@ -11,5 +11,15 @@
         android:icon="@drawable/complete"
         android:title="@string/title_finished" />
 
+    <item
+        android:id="@+id/navigation_favourite"
+        android:icon="@drawable/favourite"
+        android:title="@string/title_favourite" />
+
+    <item
+        android:id="@+id/navigation_setting"
+        android:icon="@drawable/settings"
+        android:title="@string/title_setting" />
+
 
 </menu>

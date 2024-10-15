@@ -28,7 +28,7 @@ class UpcomingViewModel : ViewModel() {
                 _upcomingEvents.postValue(response.listEvents)
             } catch (e: Exception) {
                 e.printStackTrace()
-                _upcomingEvents.postValue(emptyList()) // Atau tangani error sesuai kebutuhan
+                _upcomingEvents.postValue(emptyList())
             } finally {
                 _loading.postValue(false)
             }

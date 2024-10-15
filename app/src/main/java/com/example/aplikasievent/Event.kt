@@ -9,5 +9,7 @@ data class Event(
     val quota: Int,
     val registrants: Int,
     val description: String,
-    val link: String
+    val link: String,
+    var isFavorite: Boolean = false
 )
+

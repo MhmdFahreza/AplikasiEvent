@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.example.aplikasievent.Event
 import com.example.aplikasievent.R
 import com.example.aplikasievent.databinding.FragmentDetailUpcomingBinding
+import com.example.aplikasievent.ui.Favourite.FavouriteManager
 
 class DetailFragmentUpcoming : Fragment() {
 
@@ -31,6 +32,9 @@ class DetailFragmentUpcoming : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Initialize FavouriteManager with context
+        FavouriteManager.init(requireContext())
 
         val eventId = arguments?.getInt("eventId") ?: return
 
@@ -63,7 +67,6 @@ class DetailFragmentUpcoming : Fragment() {
         binding.sisaKuota.text = "Sisa Kuota: $remainingQuota"
 
         val placeholderRes = getPlaceholderImage(position)
-
         Glide.with(this)
             .load(event.imageUrl)
             .placeholder(placeholderRes)
@@ -73,6 +76,20 @@ class DetailFragmentUpcoming : Fragment() {
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse(event.link)
             startActivity(intent)
+        }
+
+        // Handle favourite
+        val isFavourited = FavouriteManager.isFavourite(event)
+        binding.favouriteButton.setImageResource(if (isFavourited) R.drawable.ic_favourite_button else R.drawable.ic_favourite_button)
+
+        binding.favouriteButton.setOnClickListener {
+            if (isFavourited) {
+                FavouriteManager.removeFavourite(event)
+                binding.favouriteButton.setImageResource(R.drawable.ic_favourite_button)
+            } else {
+                FavouriteManager.addFavourite(event)
+                binding.favouriteButton.setImageResource(R.drawable.ic_favourite_button)
+            }
         }
     }
 

@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">AplikasiEvent</string>
     <string name="title_upcoming">Upcoming</string>
+    <string name="title_favourite">Favourite</string>
+    <string name="title_setting">Setting</string>
     <string name="title_finished">Finished</string>
     <string name="textEventFinished">Event Name</string>
     <string name="textEventUpcoming">Event Name</string>
