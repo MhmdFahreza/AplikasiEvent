@@ -33,7 +33,6 @@ class UpcomingAdapter(private val onItemClick: (Event) -> Unit) : RecyclerView.A
         private fun getPlaceholderImage(position: Int): Int {
             return when (position % 38 + 1) {
                 1 -> R.drawable.bootcamp
-                2 -> R.drawable.devkoch173
                 else -> R.drawable.error_image
             }
         }
