@@ -10,6 +10,7 @@ data class Event(
     val registrants: Int,
     val description: String,
     val link: String,
-    var isFavorite: Boolean = false
+    var isFavorite: Boolean = false,
+    val isFinished: Boolean
 )
 

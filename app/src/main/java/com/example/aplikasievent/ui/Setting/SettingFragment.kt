@@ -24,7 +24,6 @@ class SettingFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // No need to apply the theme here, we'll do it in Activity
     }
 
     override fun onCreateView(
@@ -70,9 +69,8 @@ class SettingFragment : Fragment() {
     }
 
     private suspend fun performApiRequest(): String {
-        // Simulate a delay to mimic an API call
-        kotlinx.coroutines.delay(2000)  // Simulate 2 seconds delay
-        return "Pengaturan Tema"
+        kotlinx.coroutines.delay(500)
+        return ""
     }
 
     override fun onDestroyView() {

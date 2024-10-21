@@ -20,7 +20,7 @@ object FavouriteManager {
     }
 
     fun addFavourite(event: Event) {
-        if (!favourites.contains(event)) {
+        if (!favourites.any { it.id == event.id }) {
             favourites.add(event)
             saveFavourites()
         }
@@ -36,7 +36,7 @@ object FavouriteManager {
     }
 
     fun isFavourite(event: Event): Boolean {
-        return favourites.contains(event)
+        return favourites.any { it.id == event.id }
     }
 
     private fun saveFavourites() {

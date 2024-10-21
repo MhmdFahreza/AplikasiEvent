@@ -15,23 +15,16 @@ class FavouriteViewModel : ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    // Simulasi request ke API menggunakan coroutine
+    init {
+        loadFavorites()
+    }
+
     fun loadFavorites() {
         viewModelScope.launch {
             _isLoading.value = true
-            delay(500)
+            delay(500)  // Simulate loading delay
             _favoriteEvents.value = FavouriteManager.getFavourites()
             _isLoading.value = false
         }
-    }
-
-    fun addFavorite(event: Event) {
-        FavouriteManager.addFavourite(event)
-        _favoriteEvents.value = FavouriteManager.getFavourites()
-    }
-
-    fun removeFavorite(event: Event) {
-        FavouriteManager.removeFavourite(event)
-        _favoriteEvents.value = FavouriteManager.getFavourites()
     }
 }

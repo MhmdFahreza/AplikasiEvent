@@ -16,10 +16,12 @@ class FinishedViewModel : ViewModel() {
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> = _loading
 
+    // Initialize by loading all finished events
     init {
         getFinishedEvents()
     }
 
+    // Fetch the list of finished events from API
     private fun getFinishedEvents() {
         viewModelScope.launch {
             try {
@@ -33,5 +35,9 @@ class FinishedViewModel : ViewModel() {
                 _loading.postValue(false)
             }
         }
+    }
+
+    fun getEventPosition(event: Event): Int {
+        return _finishedEvents.value?.indexOf(event) ?: 0
     }
 }

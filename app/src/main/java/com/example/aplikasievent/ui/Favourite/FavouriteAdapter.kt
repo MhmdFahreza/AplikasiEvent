@@ -17,7 +17,7 @@ class FavouriteAdapter(private val onItemClick: (Event) -> Unit) :
         fun bind(event: Event, onItemClick: (Event) -> Unit) {
             binding.eventName.text = event.name
 
-            // Pilih placeholder berdasarkan ID event
+            // Placeholder berdasarkan ID event
             val placeholderRes = getPlaceholderImage(event.id)
 
             Glide.with(binding.eventImage.context)
@@ -31,10 +31,14 @@ class FavouriteAdapter(private val onItemClick: (Event) -> Unit) :
             }
         }
 
-        // Fungsi untuk mendapatkan gambar placeholder berdasarkan ID event dari API
+        // Placeholder image berdasarkan ID event
         private fun getPlaceholderImage(eventId: Int): Int {
             return when (eventId) {
+                8938 -> R.drawable.cara_mencari_dan_melamar_pekerjaan_di_upwork
+                8963 -> R.drawable.devcoach_174
+                8958 -> R.drawable.idcamp_alumni_dialogue_1_customer_centric_development_and_user_experience
                 8948 -> R.drawable.bootcamp
+                8943 -> R.drawable.idcamp_x_dicoding_live_2_automation_fast_track_your_career
                 8953 -> R.drawable.devkoch173
                 8933 -> R.drawable.dosdevcoach_172
                 8898 -> R.drawable.offline_event_baparekraf

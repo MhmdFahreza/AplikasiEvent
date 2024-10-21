@@ -21,11 +21,11 @@
         android:label="@string/title_favourite"
         tools:layout="@layout/fragment_favourite" >
         <action
-            android:id="@+id/action_navigation_favourite_to_detailFragmentFinished"
-            app:destination="@id/detailFragmentFinished" />
-        <action
             android:id="@+id/action_navigation_favourite_to_detailFragmentUpcoming"
             app:destination="@id/detailFragmentUpcoming" />
+        <action
+            android:id="@+id/action_navigation_favourite_to_detailFragmentFinished"
+            app:destination="@id/detailFragmentFinished" />
     </fragment>
 
 
