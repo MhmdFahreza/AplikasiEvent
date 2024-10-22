@@ -34,7 +34,6 @@ class UpcomingAdapter(private val onItemClick: (Event) -> Unit) : RecyclerView.A
             return when (position % 38 + 1) {
                 1 -> R.drawable.cara_mencari_dan_melamar_pekerjaan_di_upwork
                 2 -> R.drawable.devcoach_174
-                3 -> R.drawable.idcamp_alumni_dialogue_1_customer_centric_development_and_user_experience
                 else -> R.drawable.error_image
             }
         }
