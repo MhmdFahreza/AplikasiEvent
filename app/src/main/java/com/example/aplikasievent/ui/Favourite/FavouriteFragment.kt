@@ -48,6 +48,14 @@ class FavouriteFragment : Fragment() {
         favouriteViewModel.loadFavorites()
     }
 
+    private fun navigateToDetail(event: Event) {
+        if (event.isFinished) {
+            navigateToDetailFinished(event.id)
+        } else {
+            navigateToDetailUpcoming(event.id)
+        }
+    }
+
     private fun navigateToDetailUpcoming(eventId: Int) {
         val action = FavouriteFragmentDirections
             .actionNavigationFavouriteToDetailFragmentUpcoming(eventId)
@@ -58,14 +66,6 @@ class FavouriteFragment : Fragment() {
         val action = FavouriteFragmentDirections
             .actionNavigationFavouriteToDetailFragmentFinished(eventId)
         findNavController().navigate(action)
-    }
-
-    private fun navigateToDetail(event: Event) {
-        if (event.isFinished) {
-            navigateToDetailFinished(event.id)
-        } else {
-            navigateToDetailUpcoming(event.id)
-        }
     }
 
     override fun onDestroyView() {

@@ -16,17 +16,20 @@ material = "1.12.0"
 constraintlayout = "2.1.4"
 lifecycleLivedataKtx = "2.8.6"
 lifecycleViewmodelKtx = "2.8.6"
-navigationFragmentKtx = "2.8.2"
-navigationSafeArgsGradlePlugin = "2.5.0"
-navigationUiKtx = "2.8.2"
+navigationFragmentKtx = "2.8.3"
+navigationSafeArgsGradlePlugin = "2.8.3"
+navigationUiKtx = "2.8.3"
 retrofit = "2.9.0"
 playServicesAdsLite = "23.4.0"
-activity = "1.9.2"
-transportApi = "3.2.0"
+activity = "1.9.3"
+roomCompiler = "2.6.1"
+roomRuntime = "2.6.1"
+transportApi = "4.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-navigation-safe-args-gradle-plugin = { module = "androidx.navigation:navigation-safe-args-gradle-plugin", version.ref = "navigationSafeArgsGradlePlugin" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
 compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "compiler" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
@@ -46,6 +49,7 @@ androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 play-services-ads-lite = { group = "com.google.android.gms", name = "play-services-ads-lite", version.ref = "playServicesAdsLite" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomCompiler" }
 transport-api = { group = "com.google.android.datatransport", name = "transport-api", version.ref = "transportApi" }
 
 [plugins]

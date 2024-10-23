@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.example.aplikasievent.Event
 import com.example.aplikasievent.R
@@ -37,11 +36,10 @@ class DetailFragmentFinished : Fragment() {
 
         val eventId = arguments?.getInt("eventId") ?: return
 
-
         binding.progressBar.visibility = View.VISIBLE
         binding.linkButton.visibility = View.GONE
 
-        viewModel.finishedEvents.observe(viewLifecycleOwner, Observer { events ->
+        viewModel.finishedEvents.observe(viewLifecycleOwner) { events ->
             val event = events.find { it.id == eventId }
             if (event != null) {
                 val position = viewModel.getEventPosition(event)
@@ -52,7 +50,7 @@ class DetailFragmentFinished : Fragment() {
                 binding.progressBar.visibility = View.GONE
                 binding.linkButton.visibility = View.GONE
             }
-        })
+        }
     }
 
     private fun bindEventData(event: Event, position: Int) {
@@ -82,7 +80,7 @@ class DetailFragmentFinished : Fragment() {
         binding.favouriteButton.setImageResource(if (isFavourited) R.drawable.ic_favourite_button else R.drawable.ic_favourite_button)
 
         binding.favouriteButton.setOnClickListener {
-            if (FavouriteManager.isFavourite(event)) {
+            if (isFavourited) {
                 FavouriteManager.removeFavourite(event)
                 binding.favouriteButton.setImageResource(R.drawable.ic_favourite_button)
             } else {
@@ -90,7 +88,6 @@ class DetailFragmentFinished : Fragment() {
                 binding.favouriteButton.setImageResource(R.drawable.ic_favourite_button)
             }
         }
-
     }
 
     private fun getPlaceholderImage(position: Int): Int {

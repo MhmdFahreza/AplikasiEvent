@@ -15,14 +15,10 @@ class FavouriteViewModel : ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    init {
-        loadFavorites()
-    }
-
     fun loadFavorites() {
         viewModelScope.launch {
             _isLoading.value = true
-            delay(500)  // Simulate loading delay
+            delay(200)  // Simulate loading delay
             _favoriteEvents.value = FavouriteManager.getFavourites()
             _isLoading.value = false
         }

@@ -17,7 +17,6 @@ class FavouriteAdapter(private val onItemClick: (Event) -> Unit) :
         fun bind(event: Event, onItemClick: (Event) -> Unit) {
             binding.eventName.text = event.name
 
-            // Placeholder berdasarkan ID event
             val placeholderRes = getPlaceholderImage(event.id)
 
             Glide.with(binding.eventImage.context)
@@ -25,13 +24,11 @@ class FavouriteAdapter(private val onItemClick: (Event) -> Unit) :
                 .placeholder(placeholderRes)
                 .into(binding.eventImage)
 
-            // Set click listener
             binding.root.setOnClickListener {
                 onItemClick(event)
             }
         }
 
-        // Placeholder image berdasarkan ID event
         private fun getPlaceholderImage(eventId: Int): Int {
             return when (eventId) {
                 8938 -> R.drawable.cara_mencari_dan_melamar_pekerjaan_di_upwork

@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.example.aplikasievent.Event
 import com.example.aplikasievent.R
@@ -33,7 +32,6 @@ class DetailFragmentUpcoming : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Initialize FavouriteManager with context
         FavouriteManager.init(requireContext())
 
         val eventId = arguments?.getInt("eventId") ?: return
@@ -41,7 +39,7 @@ class DetailFragmentUpcoming : Fragment() {
         binding.progressBar.visibility = View.VISIBLE
         binding.linkButton.visibility = View.GONE
 
-        viewModel.upcomingEvents.observe(viewLifecycleOwner, Observer { events ->
+        viewModel.upcomingEvents.observe(viewLifecycleOwner) { events ->
             val event = events.find { it.id == eventId }
             if (event != null) {
                 val position = events.indexOf(event)
@@ -52,7 +50,7 @@ class DetailFragmentUpcoming : Fragment() {
                 binding.progressBar.visibility = View.GONE
                 binding.linkButton.visibility = View.GONE
             }
-        })
+        }
     }
 
     private fun bindEventData(event: Event, position: Int) {
@@ -78,7 +76,6 @@ class DetailFragmentUpcoming : Fragment() {
             startActivity(intent)
         }
 
-        // Handle favourite
         val isFavourited = FavouriteManager.isFavourite(event)
         binding.favouriteButton.setImageResource(if (isFavourited) R.drawable.ic_favourite_button else R.drawable.ic_favourite_button)
 

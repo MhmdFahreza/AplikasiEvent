@@ -13,4 +13,3 @@ data class Event(
     var isFavorite: Boolean = false,
     val isFinished: Boolean
 )
-

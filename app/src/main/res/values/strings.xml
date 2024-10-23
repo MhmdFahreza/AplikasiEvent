@@ -7,25 +7,5 @@
     <string name="textEventFinished">Event Name</string>
     <string name="textEventUpcoming">Event Name</string>
 
-    <string name="event_name_finished">DevCoach 172: Flutter | Tingkatkan Pengalaman Pengguna dengan Lokalisasi dan Aksesibilitas (Contoh Saja)</string>
-    <string name="owner_name_finished">Dicoding Event</string>
-    <string name="begin_time_finished">2024–10-11 16:00:00 - 2024-10-11 17:00:00(End)</string>
-    <string name="event_quota_finished">1765</string>
-    <string name="event_description_finished">
-        Sejak tahun 2019, IDCamp telah memberikan lebih dari 270.000 beasiswa coding dan berhasil melahirkan 91.000+ lulusan terampil. Di tahun 2024, IDCamp kembali hadir untuk melanjutkan misinya dengan  menyediakan ratusan ribu akses belajar coding secara gratis untuk para calon developer teknologi Indonesia.IDCamp 2024 menawarkan beasiswa pelatihan coding online di 8 pilihan alur belajar utama mulai dari level dasar hingga mahir yang mencakup Android Developer, Front-End Web Developer, Machine Learning Engineer, Multi-Platform App Developer, Back-End Developer, React Developer, dan Data Scientist. Tak hanya itu, di tahun 2024 ini IDCamp juga memberikan
-        alur belajar/kelas tambahan di bidang Artificial Intelligence, Cyber Security, dan Automation. Dalam rangka menjangkau lebih banyak pendaftar beasiswa IDCamp 2024, Indosat Ooredoo Hutchison bersama Dicoding akan mengadakan event offline roadshow yang tergabung dalam “IDCamp Connect”.
-    </string>
-
-    <string name="event_name_upcoming">[Offline] IDCamp Connect  Roadshow - Solo (Contoh Saja)</string>
-    <string name="owner_name_upcoming">Indosat Ooredoo Hutchison Digital Camp</string>
-    <string name="begin_time_upcoming">2024–10–18 13:00:00</string>
-    <string name="event_quota_upcoming">10</string>
-    <string name="event_description_upcoming">
-    Sejak tahun 2019, IDCamp telah memberikan lebih dari 270.000 beasiswa coding dan berhasil melahirkan 91.000+ lulusan terampil. Di tahun 2024, IDCamp kembali hadir untuk melanjutkan misinya dengan menyediakan ratusan ribu akses belajar coding secara gratis untuk para calon developer teknologi Indonesia.
-    IDCamp 2024 menawarkan beasiswa pelatihan coding online di 8 pilihan alur belajar utama mulai dari level dasar hingga mahir yang mencakup Android Developer, Front-End Web Developer, Machine Learning Engineer, Multi-Platform App Developer, Back-End Developer, React Developer, dan Data Scientist. Tak hanya itu, di tahun 2024 ini IDCamp juga memberikan3 alur belajar/kelas tambahan bidang Artificial Intelligence.
-    Dalam rangka menjangkau lebih banyak pendaftar beasiswa IDCamp 2024, Indosat Ooredoo Hutchison bersama Dicoding akan mengadakan event offline roadshow yang tergabung dalam “IDCamp Connect”. Roadshow akan dimulai di kota Solo.
-    </string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -25,8 +25,7 @@ class UpcomingFragment : Fragment() {
         _binding = FragmentUpcomingBinding.inflate(inflater, container, false)
 
         // Initialize adapter
-        upcomingAdapter = UpcomingAdapter { event ->
-            // Handle click
+        upcomingAdapter = UpcomingAdapter { _ ->
         }
 
         binding.recyclerView.apply {
