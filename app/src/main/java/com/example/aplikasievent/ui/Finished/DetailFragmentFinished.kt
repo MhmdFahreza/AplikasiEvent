@@ -12,8 +12,13 @@ import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.example.aplikasievent.Event
 import com.example.aplikasievent.R
+import com.example.aplikasievent.database.EventEntity
+import com.example.aplikasievent.database.EventRoomDatabase
 import com.example.aplikasievent.databinding.FragmentDetailFinishedBinding
 import com.example.aplikasievent.ui.Favourite.FavouriteManager
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class DetailFragmentFinished : Fragment() {
 
@@ -42,7 +47,7 @@ class DetailFragmentFinished : Fragment() {
         viewModel.finishedEvents.observe(viewLifecycleOwner) { events ->
             val event = events.find { it.id == eventId }
             if (event != null) {
-                val position = viewModel.getEventPosition(event)
+                val position = events.indexOf(event)
                 bindEventData(event, position)
                 binding.progressBar.visibility = View.GONE
                 binding.linkButton.visibility = View.VISIBLE
@@ -83,9 +88,11 @@ class DetailFragmentFinished : Fragment() {
             if (isFavourited) {
                 FavouriteManager.removeFavourite(event)
                 updateFavouriteButtonUI(false)
+                deleteEventFromDatabase(event)
             } else {
                 FavouriteManager.addFavourite(event)
                 updateFavouriteButtonUI(true)
+                saveEventToDatabase(event)
             }
         }
     }
@@ -141,6 +148,28 @@ class DetailFragmentFinished : Fragment() {
             37 -> R.drawable.webcode_complete
             38 -> R.drawable.devcoach_154
             else -> R.drawable.error_image
+        }
+    }
+
+    private fun saveEventToDatabase(event: Event) {
+        val eventEntity = EventEntity(
+            id = event.id.toString(),
+            name = event.name,
+            mediaCover = event.imageUrl
+        )
+        CoroutineScope(Dispatchers.IO).launch {
+            EventRoomDatabase.getInstance(requireContext()).eventDao().insert(eventEntity)
+        }
+    }
+
+    private fun deleteEventFromDatabase(event: Event) {
+        val eventEntity = EventEntity(
+            id = event.id.toString(),
+            name = event.name,
+            mediaCover = event.imageUrl
+        )
+        CoroutineScope(Dispatchers.IO).launch {
+            EventRoomDatabase.getInstance(requireContext()).eventDao().delete(eventEntity)
         }
     }
 

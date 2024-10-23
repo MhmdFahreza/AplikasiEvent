@@ -12,8 +12,13 @@ import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.example.aplikasievent.Event
 import com.example.aplikasievent.R
+import com.example.aplikasievent.database.EventEntity
+import com.example.aplikasievent.database.EventRoomDatabase
 import com.example.aplikasievent.databinding.FragmentDetailUpcomingBinding
 import com.example.aplikasievent.ui.Favourite.FavouriteManager
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class DetailFragmentUpcoming : Fragment() {
 
@@ -83,9 +88,11 @@ class DetailFragmentUpcoming : Fragment() {
             if (isFavourited) {
                 FavouriteManager.removeFavourite(event)
                 updateFavouriteButtonUI(false)
+                deleteEventFromDatabase(event)
             } else {
                 FavouriteManager.addFavourite(event)
                 updateFavouriteButtonUI(true)
+                saveEventToDatabase(event)
             }
         }
     }
@@ -105,6 +112,28 @@ class DetailFragmentUpcoming : Fragment() {
             1 -> R.drawable.cara_mencari_dan_melamar_pekerjaan_di_upwork
             2 -> R.drawable.devcoach_174
             else -> R.drawable.error_image
+        }
+    }
+
+    private fun saveEventToDatabase(event: Event) {
+        val eventEntity = EventEntity(
+            id = event.id.toString(),
+            name = event.name,
+            mediaCover = event.imageUrl
+        )
+        CoroutineScope(Dispatchers.IO).launch {
+            EventRoomDatabase.getInstance(requireContext()).eventDao().insert(eventEntity)
+        }
+    }
+
+    private fun deleteEventFromDatabase(event: Event) {
+        val eventEntity = EventEntity(
+            id = event.id.toString(),
+            name = event.name,
+            mediaCover = event.imageUrl
+        )
+        CoroutineScope(Dispatchers.IO).launch {
+            EventRoomDatabase.getInstance(requireContext()).eventDao().delete(eventEntity)
         }
     }
 
