@@ -23,18 +23,29 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-
-            <ImageView
-                android:id="@+id/mediaCover"
+            <!-- FrameLayout to stack ImageView and FloatingActionButton -->
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:scaleType="centerCrop" />
+                android:layout_height="200dp">
 
-            <ImageButton
-                android:id="@+id/favouriteButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_favourite_button" />
+                <ImageView
+                    android:id="@+id/mediaCover"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="centerCrop" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/favouriteButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:layout_margin="16dp"
+                    android:contentDescription="Favorite Button"
+                    android:src="@drawable/addfavourite"
+                    android:tint="@android:color/white"
+                    app:fabSize="normal" />
+
+            </FrameLayout>
 
             <TextView
                 android:id="@+id/name"
@@ -79,6 +90,7 @@
                 android:layout_height="wrap_content"
                 android:text="Buka Link Acara"
                 android:layout_gravity="center" />
+
         </LinearLayout>
     </ScrollView>
 

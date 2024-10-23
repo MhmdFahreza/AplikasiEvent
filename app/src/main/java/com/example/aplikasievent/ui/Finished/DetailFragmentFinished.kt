@@ -77,16 +77,26 @@ class DetailFragmentFinished : Fragment() {
         }
 
         val isFavourited = FavouriteManager.isFavourite(event)
-        binding.favouriteButton.setImageResource(if (isFavourited) R.drawable.ic_favourite_button else R.drawable.ic_favourite_button)
+        updateFavouriteButtonUI(isFavourited)
 
         binding.favouriteButton.setOnClickListener {
             if (isFavourited) {
                 FavouriteManager.removeFavourite(event)
-                binding.favouriteButton.setImageResource(R.drawable.ic_favourite_button)
+                updateFavouriteButtonUI(false)
             } else {
                 FavouriteManager.addFavourite(event)
-                binding.favouriteButton.setImageResource(R.drawable.ic_favourite_button)
+                updateFavouriteButtonUI(true)
             }
+        }
+    }
+
+    private fun updateFavouriteButtonUI(isFavourited: Boolean) {
+        if (isFavourited) {
+            binding.favouriteButton.setImageResource(R.drawable.deletefavourite)
+            binding.favouriteButton.setColorFilter(resources.getColor(android.R.color.black, null))
+        } else {
+            binding.favouriteButton.setImageResource(R.drawable.addfavourite)
+            binding.favouriteButton.setColorFilter(resources.getColor(android.R.color.white, null))
         }
     }
 
