@@ -49,10 +49,17 @@ class FavouriteFragment : Fragment() {
     }
 
     private fun navigateToDetail(event: Event) {
-        if (event.isFinished) {
-            navigateToDetailFinished(event.id)
-        } else {
-            navigateToDetailUpcoming(event.id)
+        when (event.id) {
+            8938, 8963 -> navigateToDetailUpcoming(event.id)
+            8958, 8948, 8943, 8953, 8933 -> navigateToDetailFinished(event.id)
+            8898, 8928, 8923, 8918, 8908 -> navigateToDetailFinished(event.id)
+            8903, 8893, 8883, 8878, 8868 -> navigateToDetailFinished(event.id)
+            8863, 8853, 8848, 8808, 8833 -> navigateToDetailFinished(event.id)
+            8838, 8828, 8823, 8818, 8813 -> navigateToDetailFinished(event.id)
+            8798, 8793, 8778, 8783, 8788 -> navigateToDetailFinished(event.id)
+            8747, 8772, 8752, 8742, 8727 -> navigateToDetailFinished(event.id)
+            8682, 8712, 8722 -> navigateToDetailFinished(event.id)
+            else -> println("Unknown event")
         }
     }
 
@@ -73,3 +80,5 @@ class FavouriteFragment : Fragment() {
         _binding = null
     }
 }
+
+

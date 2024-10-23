@@ -11,5 +11,5 @@ data class Event(
     val description: String,
     val link: String,
     var isFavorite: Boolean = false,
-    val isFinished: Boolean
+
 )
